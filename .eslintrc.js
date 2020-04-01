@@ -19,8 +19,19 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
+        // enable additional rules
+      
+ 
+
+        // override default options for rules from base configurations
+       
+       
+
+        // disable rules from base configurations
+        "no-console": "off"
     }
 };
