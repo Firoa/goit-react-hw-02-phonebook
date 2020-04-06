@@ -20,6 +20,13 @@ class App extends Component {
   }
 
   handleAddContact = data => {
+    const flag = this.state.contacts.find(({ name }) => name === data.name);
+    console.log('flag before', flag);
+    if (flag !== undefined) {
+      console.log(flag);
+      alert(`${flag.name} is allready in contacts`);
+      return 0;
+    }
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, ...data],
