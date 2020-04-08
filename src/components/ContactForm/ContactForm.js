@@ -1,42 +1,47 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Button from '../Button/Button'
+import Button from '../Button/Button';
+import styles from './ContactForm.module.css';
 class ContactForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      phoneNumber: '',
-      id: ''
+      number: '',
+      id: '',
     };
     this.formId = uuidv4();
   }
 
   handleChange = e => {
-    const {value,name} = e.target;
+    const { value, name } = e.target;
     this.setState({ [name]: value });
   };
 
   handleAddContact = e => {
-    e.preventDefault();     
-    this.props.onAddSubmit ([{...this.state,...{id: uuidv4()}}]);
+    e.preventDefault();
+    this.props.onAddSubmit({ ...this.state, ...{ id: uuidv4() } });
     this.resetState();
   };
 
-  resetState = () =>{
+  resetState = () => {
     this.setState({
       name: '',
-      phoneNumber: ''
-    })
-  }
+      number: '',
+    });
+  };
 
   render() {
-    const { name, phoneNumber } = this.state;
+    const { name, number } = this.state;
     return (
-      <div className="App">
-        <form onSubmit={this.handleAddContact} htmlFor={this.formId}>
+      <div>
+        <form
+          onSubmit={this.handleAddContact}
+          htmlFor={this.formId}
+          className={styles.contact_form}
+        >
           <label>
-            <h2>Name</h2>
+            <h2 className={styles.title}>Name</h2>
             <input
               type="text"
               placeholder="Enter friend"
@@ -47,17 +52,17 @@ class ContactForm extends Component {
             ></input>
           </label>
           <label>
-          <h2>Number</h2>
+            <h2 className={styles.title}>Number</h2>
             <input
               type="text"
-              placeholder="Enter friend"
-              value={phoneNumber}
+              placeholder="Enter number"
+              value={number}
               onChange={this.handleChange}
               id={this.formId}
-              name="phoneNumber"
+              name="number"
             ></input>
           </label>
-                   <Button type="submit" text="Add contact"/>
+          <Button type="submit" text="Add contact" />
         </form>
       </div>
     );

@@ -1,28 +1,29 @@
 import React from 'react';
-const ContactList = ({ listData, filterKey,callbackfunc }) => {
+import styles from './ContactList.module.css';
+const ContactList = ({ listData, filterKey, callbackfunc }) => {
   if (listData === undefined) return;
   let renderList = [...listData];
   if (filterKey !== '') {
     renderList = listData.filter(({ name }) =>
       name.toLowerCase().includes(filterKey.toLowerCase()),
-    );    
-  }  
+    );
+  }
   return (
-    <div>
-      {' '}
-      <h2>Contacts</h2>
-      <ul>
-        {renderList.map(({ id, name, phoneNumber }) => (
+    <div className={styles.contact_field}>
+      <ul className={styles.contact_list}>
+        {renderList.map(({ id, name, number }) => (
           <li key={id}>
-            {name}: {phoneNumber} <button
-        onClick={() => callbackfunc(id)}       
-        type='button'
-      >
-        delete
-      </button>
+            {name}: {number}{' '}
+            <button
+              className={styles.button}
+              onClick={() => callbackfunc(id)}
+              type="button"
+            >
+              delete
+            </button>
           </li>
         ))}
-      </ul>{' '}
+      </ul>
     </div>
   );
 };

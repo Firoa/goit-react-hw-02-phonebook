@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import ContactForm from './components/ContactForm/ContactForm';
 import ContactList from './components/ContactList/ContactList';
-
+import styles from './App.module.css';
 import Filter from './components/Filter/Filter';
 class App extends Component {
   constructor(props) {
@@ -21,15 +21,13 @@ class App extends Component {
 
   handleAddContact = data => {
     const flag = this.state.contacts.find(({ name }) => name === data.name);
-    console.log('flag before', flag);
     if (flag !== undefined) {
-      console.log(flag);
       alert(`${flag.name} is allready in contacts`);
       return 0;
     }
     this.setState(prevState => {
       return {
-        contacts: [...prevState.contacts, ...data],
+        contacts: [...prevState.contacts, data],
       };
     });
   };
@@ -43,23 +41,18 @@ class App extends Component {
     this.setState({ filter: data });
   };
 
-  callbackFunc = () => console.log(this.state);
-
   render() {
     return (
-      <div className="App">
+      <div className={styles.app}>
+        <h2 className={styles.title}>PhoneBook</h2>
         <ContactForm onAddSubmit={this.handleAddContact} />
+        <h2 className={styles.title}>Contacts</h2>
         <Filter onChange={this.handleFilter} />
         <ContactList
           listData={this.state.contacts}
           filterKey={this.state.filter}
           callbackfunc={this.handleDeleteContact}
         />
-        <br></br>
-
-        <button onClick={() => this.callbackFunc()} type="button">
-          LOG
-        </button>
       </div>
     );
   }

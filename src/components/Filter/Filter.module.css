@@ -1,0 +1,11 @@
+.filter {
+  min-width: 360px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.title {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}

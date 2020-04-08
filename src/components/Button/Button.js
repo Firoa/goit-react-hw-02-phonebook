@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const Button = ({ callbackfunc, text,type }) => {
   const key = text.toLowerCase();
   if (typeof callbackfunc === 'function'){
-    return (    
+    return (
       <button
         onClick={() => callbackfunc(key)}
         className={styles.button}

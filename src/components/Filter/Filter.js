@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import styles from './Filter.module.css';
 class Filter extends Component {
   constructor(props) {
     super(props);
@@ -12,17 +12,17 @@ class Filter extends Component {
     this.setState({ [name]: value });
     this.props.onChange(value);
   };
-  callbackFunc = () => console.log('LOG FROM FILTER:',this.state);
+
   render() {
     const { filter } = this.state;
     return (
       <div>
-        <form>
+        <form className={styles.filter}>
+          <h2 className={styles.title}>Find contacts by name</h2>
           <label>
-            <h2>Find contacts by name</h2>
             <input
               type="text"
-              placeholder="Enter friend"
+              placeholder="Enter contact"
               value={filter}
               onChange={this.handleChange}
               id={this.formId}
@@ -30,9 +30,6 @@ class Filter extends Component {
             ></input>
           </label>
         </form>
-        <button onClick={() => this.callbackFunc()} type="button">
-          LOG
-        </button>
       </div>
     );
   }
